@@ -112,13 +112,3 @@ textChatService.OnIncomingMessage = function(message)
     return properties
 end
 
-textChatService.OnIncomingMessage = function(message)
-    local properties = Instance.new("TextChatMessageProperties")
-    if message.TextSource then
-        local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
-        if player.Name == "SnoopyIs_Pro" or player.Name == "menamge0" or player.Name == "SnoopyIs_Better" then
-            properties.PrefixText = "<font color='#c800c8'>[SP+ PRIVATE]</font> " .. message.PrefixText
-        end
-    end
-    return properties
-end
