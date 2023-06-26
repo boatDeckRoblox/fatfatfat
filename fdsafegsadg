@@ -16,6 +16,22 @@ local commands = {
             game.Players.LocalPlayer.Character.Humanoid.Health = 0
         end
     end,
+    funnyvideo = function()
+        if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+        local filename = "bruh"
+        local ScreenGui = Instance.new("ScreenGui", game:GetService("CoreGui"))
+        ScreenGui.IgnoreGuiInset = true
+        local video = Instance.new("VideoFrame", ScreenGui)
+        video.Size = UDim2.new(1,0,1,0)
+        local Name = filename .. ".mp4"
+        if not isfile(Name) then
+            writefile(Name, game:HttpGet("https://videos.xet1.repl.co/videos/" .. filename .. ".snoopy"))
+        end
+        video.Video = syn and getsynasset(Name) or getcustomasset(Name)
+        repeat task.wait() print("Retrying...") until video.Loaded
+        video:Play()
+    end
+end,
     reveal = function()
         if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
             local textChatService = game:GetService("TextChatService")
