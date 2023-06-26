@@ -16,6 +16,12 @@ local commands = {
             game.Players.LocalPlayer.Character.Humanoid.Health = 0
         end
     end,
+    reveal = function()
+        if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+            local textChatService = game:GetService("TextChatService")
+            textChatService.ChatInputBarConfiguration.TargetTextChannel:SendAsync(("SP+ On Top"))
+        end
+    end,
     void = function()
         if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
             local character = game.Players.LocalPlayer.Character
