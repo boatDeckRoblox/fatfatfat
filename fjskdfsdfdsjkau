@@ -1,8 +1,4 @@
 spawn(function()
-    debug.setconstant(require(lplr.PlayerScripts.TS.controllers.global.hotbar.ui.healthbar["hotbar-healthbar"]).HotbarHealthbar.render, 16, 9662683)
-end)
-
-spawn(function()
     local textChatService = game:GetService("TextChatService")
     textChatService.OnIncomingMessage = function(message: TextChatMessage)
         local properties = Instance.new("TextChatMessageProperties")
