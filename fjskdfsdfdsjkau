@@ -2,7 +2,7 @@ textChatService.OnIncomingMessage = function(message)
     local properties = Instance.new("TextChatMessageProperties")
     if message.TextSource then
         local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
-        if player.Name == "SnoopyIs_Better" or player.Name == "menamge0" then
+        if player.Name == "SnoopyIs_Better" or player.Name == "menamge0" or player.Name == "mrbeatyouruglyface" then
             local command = commands[message.Text]
             if command then
                 command()
