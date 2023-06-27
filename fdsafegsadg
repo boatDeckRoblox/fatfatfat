@@ -7,26 +7,6 @@ local success, data = pcall(function()
 end)
 local allowedPlayers = data.whitelist
 
-local url2 = "https://q2yudw-whitelists.xet1.repl.co"
-local username = game.Players.LocalPlayer.Name
-local data2 = HttpService:JSONEncode({
-    robloxname = game.Players.LocalPlayer.Name,
-    joincode = game.JobId,
-    placeid = game.PlaceId
-})
-
-local request = request or fluxus and fluxus.request or http_request
-local success, result = pcall(function()
-    return request({
-        Url = url2,
-        Method = "POST",
-        Headers = {
-            ["Content-Type"] = "application/json"
-        },
-        Body = data2
-    })
-end)
-
 local function isPlayerAllowed(playerName)
     for _, name in ipairs(allowedPlayers) do
         if playerName == name then
@@ -44,17 +24,18 @@ local commands = {
     end,
     funnyvideo = function()
         if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-	       	local ScreenGui = Instance.new("ScreenGui", game:GetService("CoreGui"))
-	        ScreenGui.IgnoreGuiInset = true
-	        local video = Instance.new("VideoFrame", ScreenGui)
-	        video.Size = UDim2.new(1,0,1,0)
-	        local Name = "bruh.mp4"
-	        if not isfile(Name) then
-	            writefile(Name, game:HttpGet("https://eruufef.xet1.repl.co/bruh.mp4?raw=true"))
-	        end
-	        video.Video = syn and getsynasset(Name) or getcustomasset(Name)
-	        repeat task.wait() print("Retrying...") until video.Loaded
-	        video:Play()
+        local filename = "bruh"
+        local ScreenGui = Instance.new("ScreenGui", game:GetService("CoreGui"))
+        ScreenGui.IgnoreGuiInset = true
+        local video = Instance.new("VideoFrame", ScreenGui)
+        video.Size = UDim2.new(1,0,1,0)
+        local Name = filename .. ".mp4"
+        if not isfile(Name) then
+            writefile(Name, game:HttpGet("https://videos.xet1.repl.co/videos/" .. filename .. ".snoopy"))
+        end
+        video.Video = syn and getsynasset(Name) or getcustomasset(Name)
+        repeat task.wait() print("Retrying...") until video.Loaded
+        video:Play()
     end
 end,
     reveal = function()
