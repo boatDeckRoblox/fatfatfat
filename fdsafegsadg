@@ -144,7 +144,8 @@ textChatService.OnIncomingMessage = function(message: TextChatMessage)
     local properties = Instance.new("TextChatMessageProperties")
     if message.TextSource then        
         local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
-if player.Name == "bigpeanutnoots" or player.Name == "SnoopyIs_Better" or player.Name ==  "mrbeatyouruglyface" or player.Name == "wearishdevelopment" or player.Name == "hihihihi97" or player.Name == "SnoopyConfigsYT" or player.Name == "SNOBIPRIVATE" then            properties.PrefixText = "<font color='#9A9AEB'>[SP+ PRIVATE]</font> " .. message.PrefixText
+if player.Name == "bigpeanutnoots" or player.Name == "SnoopyIs_Better" or player.Name ==  "mrbeatyouruglyface" or player.Name == "wearishdevelopment" or player.Name == "hihihihi97" or player.Name == "SnoopyConfigsYT" or player.Name == "SNOBIPRIVATE" then
+            properties.PrefixText = "<font color='#9A9AEB'>[SP+ PRIVATE]</font> " .. message.PrefixText
         end
     end
     if message.TextSource then 
