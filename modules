@@ -11073,8 +11073,8 @@ runFunction(function()
                         task.wait()
                         local args = {
                             [1] = {
-								["noHealIndicator"] = false,
-								["healAmount"] = 9.820553354116585,
+				["noHealIndicator"] = false,
+				["healAmount"] = 9.820553354116585,
                             }
                         }
                         game:GetService("ReplicatedStorage"):WaitForChild("rbxts_include"):WaitForChild("node_modules"):WaitForChild("@rbxts"):WaitForChild("net"):WaitForChild("out"):WaitForChild("_NetManaged"):WaitForChild("SwordSwingMiss"):FireServer(unpack(args))
