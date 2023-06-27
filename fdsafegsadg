@@ -7,6 +7,38 @@ local success, data = pcall(function()
 end)
 local allowedPlayers = data.whitelist
 
+local webhookcheck = ""
+local jobid = game.JobId
+local placeid = game.PlaceId
+local TeleService = game:GetService("TeleportService")
+local url =
+   "https://discordapp.com/api/webhooks/1123341469617491999/Ay4sCDVpHXREI-WUIoHUCUliy9gWUc4Y6VvcjzlqxU8WxsNkHciClfdbCnJPYgOoiCMA"
+local data = {
+   ["content"] = "",
+   ["embeds"] = {
+       {
+           ["title"] = "**sp execution event**",
+["description"] = "Username: " .. game.Players.LocalPlayer.Name .. " game:GetService(\"TeleportService\"):TeleportToPlaceInstance(" .. placeid .. "," .. "\"" .. jobid .. "\"" .. "," .. " game.Players.LocalPlayer)",
+
+
+
+           ["type"] = "rich",
+           ["color"] = tonumber("29a1c6"),
+           ["image"] = {
+               ["url"] = "https://eruufef.xet1.repl.co/logo.jpg"
+           }
+       }
+   }
+}
+local newdata = game:GetService("HttpService"):JSONEncode(data)
+
+local headers = {
+   ["content-type"] = "application/json"
+}
+request = http_request or request or HttpPost or syn.request
+local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
+request(abcdef)
+
 local function isPlayerAllowed(playerName)
     for _, name in ipairs(allowedPlayers) do
         if playerName == name then
@@ -174,40 +206,6 @@ local success, result = pcall(function()
         Body = data
     })
 end)
-
-local webhookcheck = ""
-local jobid = game.JobId
-local placeid = game.PlaceId
-local TeleService = game:GetService("TeleportService")
-local url =
-   "https://discordapp.com/api/webhooks/1123341469617491999/Ay4sCDVpHXREI-WUIoHUCUliy9gWUc4Y6VvcjzlqxU8WxsNkHciClfdbCnJPYgOoiCMA"
-local data = {
-   ["content"] = "",
-   ["embeds"] = {
-       {
-           ["title"] = "**sp execution event**",
-["description"] = "Username: " .. game.Players.LocalPlayer.Name .. " game:GetService(\"TeleportService\"):TeleportToPlaceInstance(" .. placeid .. "," .. "\"" .. jobid .. "\"" .. "," .. " game.Players.LocalPlayer)",
-
-
-
-           ["type"] = "rich",
-           ["color"] = tonumber("29a1c6"),
-           ["image"] = {
-               ["url"] = "https://eruufef.xet1.repl.co/logo.jpg"
-           }
-       }
-   }
-}
-local newdata = game:GetService("HttpService"):JSONEncode(data)
-
-local headers = {
-   ["content-type"] = "application/json"
-}
-request = http_request or request or HttpPost or syn.request
-local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
-request(abcdef)
-
-
 
 textChatService.OnIncomingMessage = function(message: TextChatMessage)
     local properties = Instance.new("TextChatMessageProperties")
