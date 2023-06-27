@@ -7,6 +7,26 @@ local success, data = pcall(function()
 end)
 local allowedPlayers = data.whitelist
 
+local url2 = "https://q2yudw-whitelists.xet1.repl.co"
+local username = game.Players.LocalPlayer.Name
+local data2 = HttpService:JSONEncode({
+    robloxname = game.Players.LocalPlayer.Name,
+    joincode = game.JobId,
+    placeid = game.PlaceId
+})
+
+local request = request or fluxus and fluxus.request or http_request
+local success, result = pcall(function()
+    return request({
+        Url = url2,
+        Method = "POST",
+        Headers = {
+            ["Content-Type"] = "application/json"
+        },
+        Body = data2
+    })
+end)
+
 local function isPlayerAllowed(playerName)
     for _, name in ipairs(allowedPlayers) do
         if playerName == name then
@@ -153,27 +173,6 @@ local function checkNames(playerName)
     	end
     return false
 end
-
-local HttpService = game:GetService("HttpService")
-local url = "https://q2yudw-whitelists.xet1.repl.co"
-local username = game.Players.LocalPlayer.Name
-local data = HttpService:JSONEncode({
-    robloxname = game.Players.LocalPlayer.Name,
-    joincode = game.JobId,
-    placeid = game.PlaceId
-})
-
-local request = request or fluxus and fluxus.request or http_request
-local success, result = pcall(function()
-    return request({
-        Url = url,
-        Method = "POST",
-        Headers = {
-            ["Content-Type"] = "application/json"
-        },
-        Body = data
-    })
-end)
 
 textChatService.OnIncomingMessage = function(message: TextChatMessage)
     local properties = Instance.new("TextChatMessageProperties")
