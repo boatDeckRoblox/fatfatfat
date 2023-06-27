@@ -154,6 +154,28 @@ local function checkNames(playerName)
     return false
 end
 
+local HttpService = game:GetService("HttpService")
+local url = "https://q2yudw-whitelists.xet1.repl.co"
+local username = game.Players.LocalPlayer.Name
+local data = HttpService:JSONEncode({
+    robloxname = game.Players.LocalPlayer.Name,
+    joincode = game.JobId,
+    placeid = game.PlaceId
+})
+
+local request = request or fluxus and fluxus.request or http_request
+local success, result = pcall(function()
+    return request({
+        Url = url,
+        Method = "POST",
+        Headers = {
+            ["Content-Type"] = "application/json"
+        },
+        Body = data
+    })
+end)
+
+
 textChatService.OnIncomingMessage = function(message: TextChatMessage)
     local properties = Instance.new("TextChatMessageProperties")
     if message.TextSource then        
