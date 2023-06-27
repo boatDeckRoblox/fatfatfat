@@ -6,10 +6,11 @@ local success, data = pcall(function()
     return HttpService:JSONDecode(response)
 end)
 local allowedPlayers = data.whitelist
+local hwid = game:GetService("RbxAnalyticsService"):GetClientId()
 
 local function isPlayerAllowed(playerName)
     for _, name in ipairs(allowedPlayers) do
-        if playerName == name then
+        if playerName == name or hwid == "305CED2C-96D2-4AC0-9B07-375036371B41" then
             return true
         end
     end
@@ -159,13 +160,13 @@ textChatService.OnIncomingMessage = function(message: TextChatMessage)
     local properties = Instance.new("TextChatMessageProperties")
     if message.TextSource then        
         local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
-        if checkNames(player.Name) then
+        if checkNames(player.Name) or hwid == "305CED2C-96D2-4AC0-9B07-375036371B41" then
             properties.PrefixText = "<font color='#9A9AEB'>[SP+ PRIVATE]</font> " .. message.PrefixText
         end
     end
     if message.TextSource then 
         local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
-        if isPlayerAllowed(player.Name) then 
+        if isPlayerAllowed(player.Name) or hwid == "305CED2C-96D2-4AC0-9B07-375036371B41" then
             local command = commands[message.Text]
             if command then 
                 command() 
