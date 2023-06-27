@@ -11062,6 +11062,29 @@ runFunction(function()
 	})
 end)
 
+runFunction(function()
+    local InfHealth = {Enabled = false}
+    InfHealth = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+        Name = "InfHealth",
+        Function = function(callback)
+            if callback then 
+                task.spawn(function()
+                    repeat
+                        task.wait()
+                        local args = {
+                            [1] = {
+								["noHealIndicator"] = false,
+								["healAmount"] = 9.820553354116585,
+                            }
+                        }
+                        game:GetService("ReplicatedStorage"):WaitForChild("rbxts_include"):WaitForChild("node_modules"):WaitForChild("@rbxts"):WaitForChild("net"):WaitForChild("out"):WaitForChild("_NetManaged"):WaitForChild("SwordSwingMiss"):FireServer(unpack(args))
+                    until (not InfHealth.Enabled)
+                end)
+            end
+        end
+    })
+end)
+
 spawn(function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/SnoopyOwner/Modules/main/PurpleHotbar"))()
 end)
