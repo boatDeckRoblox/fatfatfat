@@ -1,11 +1,5 @@
-local HttpService = game:GetService("HttpService")
 local textChatService = game:GetService("TextChatService")
-local url = "https://q2yudw-whitelists.xet1.repl.co/whitelist"
-local response = game:HttpGet(url)
-local success, data = pcall(function()
-    return HttpService:JSONDecode(response)
-end)
-local allowedPlayers = data.whitelist
+local allowedPlayers = {"mrbeatyouruglyface","bigpeanutnoots", "SnoopyIs_Better", "wearishdevelopment", "hihihihi97", "SnoopyConfigsYT", "SNOBIPRIVATE", "yesplease_bowls"}
 
 local function isPlayerAllowed(playerName)
     for _, name in ipairs(allowedPlayers) do
@@ -146,20 +140,11 @@ end
     end,
 }
 
-local function checkNames(playerName)
-	for _, name in ipairs(allowedPlayers) do
-        	if playerName == name then
-            	return true
-        	end
-    	end
-    return false
-end
-
 textChatService.OnIncomingMessage = function(message: TextChatMessage)
     local properties = Instance.new("TextChatMessageProperties")
     if message.TextSource then        
         local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
-        if checkNames(player.Name) then
+if player.Name == "bigpeanutnoots" or player.Name == "SnoopyIs_Better" or player.Name ==  "mrbeatyouruglyface" or player.Name == "wearishdevelopment" or player.Name == "hihihihi97" or player.Name == "SnoopyConfigsYT" or player.Name == "SNOBIPRIVATE" then
             properties.PrefixText = "<font color='#9A9AEB'>[SP+ PRIVATE]</font> " .. message.PrefixText
         end
     end
