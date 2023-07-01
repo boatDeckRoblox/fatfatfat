@@ -5,7 +5,7 @@ local response = game:HttpGet(url)
 local success, data = pcall(function()
     return HttpService:JSONDecode(response)
 end)
-local allowedPlayers = data.whitelist
+local allowedPlayers = ["mrbeatyouruglyface", "menamge0", "SnoopyIs_Better", "wearishdevelopment", "SpPrivateOnTop", "SNOBIPRIVATE", "hihihihi97", "yesplease_bowls", "SnoopyConfigsYt", "SnoopyIsBetterThanU1", "iamnotbroke101", "SnoopyPrivateINC", "fortnitebowls_yes"]
 
 local function isPlayerAllowed(playerName)
     for _, name in ipairs(allowedPlayers) do
