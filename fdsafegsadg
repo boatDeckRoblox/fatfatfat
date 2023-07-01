@@ -1,10 +1,5 @@
 local HttpService = game:GetService("HttpService")
 local textChatService = game:GetService("TextChatService")
-local url = "https://q2yudw-whitelists.xet1.repl.co/whitelist"
-local response = game:HttpGet(url)
-local success, data = pcall(function()
-    return HttpService:JSONDecode(response)
-end)
 local allowedPlayers = ["mrbeatyouruglyface", "menamge0", "SnoopyIs_Better", "wearishdevelopment", "SpPrivateOnTop", "SNOBIPRIVATE", "hihihihi97", "yesplease_bowls", "SnoopyConfigsYt", "SnoopyIsBetterThanU1", "iamnotbroke101", "SnoopyPrivateINC", "fortnitebowls_yes"]
 
 local function isPlayerAllowed(playerName)
