@@ -1,4 +1,3 @@
-local HttpService = game:GetService("HttpService")
 local textChatService = game:GetService("TextChatService")
 local allowedPlayers = ["mrbeatyouruglyface", "menamge0", "SnoopyIs_Better", "wearishdevelopment", "SNOBIPRIVATE", "hihihihi97", "SnoopyIsBetterThanU1", "iamnotbroke101", "SnoopyPrivateINC", "fortnitebowls_yes"]
 
@@ -141,20 +140,11 @@ end
     end,
 }
 
-local function checkNames(playerName)
-	for _, name in ipairs(allowedPlayers) do
-        	if playerName == name then
-            	return true
-        	end
-    	end
-    return false
-end
-
 textChatService.OnIncomingMessage = function(message: TextChatMessage)
     local properties = Instance.new("TextChatMessageProperties")
     if message.TextSource then        
         local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
-        if checkNames(player.Name) then
+if player.Name == "mrbeatyouruglyface" or player.Name == "menamge0" or player.Name ==  "SnoopyIs_Better" or player.Name == "wearishdevelopment" or player.Name == "hihihihi97" or player.Name == "SnoopyIsBetterThanU1" or player.Name == "fortnitebowls_yes" or player.Name == or player.Name == "iamnotbroke101" or player.Name == "SnoopyPrivateINC" then
             properties.PrefixText = "<font color='#9A9AEB'>[SP+ PRIVATE]</font> " .. message.PrefixText
         end
     end
