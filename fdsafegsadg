@@ -1,6 +1,6 @@
 local textchatservice = game:GetService("TextChatService")
 local allowedplayers = {
-    "noplease_bowls", "a_pr1vat3", "SnoopyIs_Better", "wearishdevelopment", 
+    "noplease_bowls", "SnoopyIs_Better", "wearishdevelopment", 
     "SnoopyIsBetterThanU1", "iamnotbroke101", "SnoopyPrivate_INC", 
     "realIronsnow5", "fluxusfrfrfr", "a_pr1vat3", "0PrimeIsAssRealOngFr", 
     "i_LOVEbowlsREAL"
