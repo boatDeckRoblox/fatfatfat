@@ -1,5 +1,4 @@
 local textChatService = game:GetService("TextChatService")
-
 local allowedplayers = {
     "noplease_bowls",
     "PlesNoBanSnoopy",
