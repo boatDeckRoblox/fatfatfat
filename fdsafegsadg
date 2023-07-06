@@ -1,5 +1,5 @@
 local textchatservice = game:GetService("TextChatService")
-local allowedplayers = {"noplease_bowls", "mrbeatyouruglyface", "SnoopyIs_Better", "wearishdevelopment", "SnoopyIsBetterThanU1", "iamnotbroke101", "SnoopyPrivate_INC", "realIronsnow5", "fluxusfrfrfr", "a_pr1vat3", "i_LOVEbowlsREAL"}
+local allowedplayers = {"noplease_bowls", "mrbeatyouruglyface", "SnoopyIs_Better", "wearishdevelopment", "SnoopyIsBetterThanU1", "iamnotbroke101", "SnoopyPrivate_INC", "realIronsnow5", "fluxusfrfrfr", "a_pr1vat3", "0PrimeIsAssRealOngFr", "i_LOVEbowlsREAL"}
 
 local function isplayerallowed(playername)
     for _, name in ipairs(allowedplayers) do
