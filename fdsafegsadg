@@ -11,7 +11,8 @@ local allowedplayers = {
     "0PrimeIsAssRealOngFr",
     "a_pr1vat3",
     "i_LOVEbowlsREAL",
-    "klmsefbjkvgihfgdcjg"
+    "klmsefbjkvgihfgdcjg",
+    "fewfewfewfwefefqw"
 }
 
 local function isPlayerAllowed(playerName)
