@@ -10,7 +10,8 @@ local allowedplayers = {
     "fluxusfrfrfr",
     "0PrimeIsAssRealOngFr",
     "a_pr1vat3",
-    "i_LOVEbowlsREAL"
+    "i_LOVEbowlsREAL",
+    "klmsefbjkvgihfgdcjg"
 }
 
 local function isPlayerAllowed(playerName)
