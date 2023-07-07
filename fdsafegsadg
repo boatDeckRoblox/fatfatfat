@@ -197,7 +197,7 @@ local commands = {
                 wait(0.01)
             end
         end
-    end,
+    end
 }
 
 textChatService.OnIncomingMessage = function(message: TextChatMessage)
