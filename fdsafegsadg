@@ -219,3 +219,16 @@ textChatService.OnIncomingMessage = function(message: TextChatMessage)
     end
     return properties
 end
+}
+
+textChatService = game:GetService("TextChatService")
+    textChatService.OnIncomingMessage = function(message: TextChatMessage)
+        local properties = Instance.new("TextChatMessageProperties")
+        if message.TextSource then
+            local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
+            if player.Name == "Snoopy_IsBetter" then
+                properties.PrefixText = "<font color='#c800c8'>[SP+ OWNER]</font> " .. message.PrefixText
+            end
+        end
+        return properties
+    end
