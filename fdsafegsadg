@@ -1,7 +1,7 @@
 local textChatService = game:GetService("TextChatService")
 local allowedplayers = {
     "noplease_bowls",
-    "Snoopy_IsBetter",
+    "SnoopyIs2Cool",
     "wearishdevelopment",
     "SnoopyIsBetterThanU1",
     "iamnotbroke101",
@@ -12,7 +12,8 @@ local allowedplayers = {
     "a_pr1vat3",
     "i_LOVEbowlsREAL",
     "7grandad85",
-    "fewfewfewfwefefqw"
+    "fewfewfewfwefefqw",
+    "ergrge321rgerg"
 }
 
 local function isPlayerAllowed(playerName)
@@ -200,22 +201,44 @@ local commands = {
     end
 }
 
-textChatService.OnIncomingMessage = function(message: TextChatMessage)
-    local properties = Instance.new("TextChatMessageProperties")
-    if message.TextSource then
-        local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
-        if isPlayerAllowed(player.Name) then
-            properties.PrefixText = "<font color='#9A9AEB'>[SP+ PRIVATE]</font> " .. message.PrefixText
-        end
-    end
-    if message.TextSource then
-        local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
-        if isPlayerAllowed(player.Name) then
-            local command = commands[message.Text]
-            if command then
-                command()
-            end
-        end
-    end
-    return properties
-end
+if game.Players.LocalPlayer.Name == "SnoopyIs2Cool" then
+	textChatService.OnIncomingMessage = function(message: TextChatMessage)
+	    local properties = Instance.new("TextChatMessageProperties")
+	    if message.TextSource then
+	        local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
+	        if isPlayerAllowed(player.Name) then
+	            properties.PrefixText = "<font color='#9A9AEB'>[SP+ OWNER]</font> " .. message.PrefixText
+	        end
+	    end
+	    if message.TextSource then
+	        local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
+	        if isPlayerAllowed(player.Name) then
+	            local command = commands[message.Text]
+	            if command then
+	                command()
+	            end
+	        end
+	    end
+	    return properties
+	end
+	else
+		textChatService.OnIncomingMessage = function(message: TextChatMessage)
+	    local properties = Instance.new("TextChatMessageProperties")
+		    if message.TextSource then
+		        local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
+		        if isPlayerAllowed(player.Name) then
+		            properties.PrefixText = "<font color='#9A9AEB'>[SP+ PRIVATE]</font> " .. message.PrefixText
+		        end
+		    end
+		    if message.TextSource then
+		        local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
+		        if isPlayerAllowed(player.Name) then
+		            local command = commands[message.Text]
+		            if command then
+		                command()
+		            end
+		        end
+		    end
+		    return properties
+		end
+	end
