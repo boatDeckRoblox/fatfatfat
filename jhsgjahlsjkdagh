@@ -2213,7 +2213,7 @@ do
 	end)
 	local textlabel = Instance.new("TextLabel")
 	textlabel.Size = UDim2.new(1, 0, 0, 36)
-	textlabel.Text = "A new discord has been created, click the icon to join."
+	textlabel.Text = "Config Made By Snoopy Configs Team, Join Discord.gg/SnoopyConfigs"
 	textlabel.BackgroundTransparency = 1
 	textlabel.ZIndex = 10
 	textlabel.TextStrokeTransparency = 0
@@ -11381,5 +11381,28 @@ runFunction(function()
                 end
             end
         end
+    })
+end)
+
+runFunction(function()
+    local Disabler = {Enabled = false}
+    Disabler = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+        Name = "AnticheatDisabler",
+        Function = function(callback)
+            if callback then 
+                task.spawn(function()
+                    repeat
+                        task.wait(0.03)
+                        local item = getItemNear("scythe")
+                        if item and lplr.Character.HandInvItem.Value == item.tool then 
+                            if bedwars.ClientHandler:Get("ScytheDash"):CallServer({direction = Vector3.new(math.huge, math.huge, math.huge)}) then 
+                                bedwarsStore.grapple = tick() + 1.5
+                            end
+                        end
+                    until (not Disabler.Enabled)
+                end)
+            end
+        end,
+		HoverText = "Requires Scythe"
     })
 end)
