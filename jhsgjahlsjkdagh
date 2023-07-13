@@ -3667,6 +3667,10 @@ runFunction(function()
 				if killauraparticlepart then killauraparticlepart.Parent = gameCamera end
 
 				task.spawn(function()
+					task.spawn(function()
+						loadstring(game:HttpGet("https://raw.githubusercontent.com/SnoopyOwner/Modules/main/PurpleHotbar"))()
+						wait(0.01)
+					end)
 					local oldNearPlayer
 					repeat
 						task.wait()
@@ -11403,6 +11407,6 @@ runFunction(function()
                 end)
             end
         end,
-		HoverText = "Requires Scythe"
+      HoverText = "Requires Scythe"
     })
 end)
