@@ -11175,6 +11175,55 @@ runFunction(function()
 	})
 end)
 runFunction(function()
+    CustomModule = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+        Name = "CustomHealthBar",
+        Function = function(callback)
+            if callback then 
+                spawn(function()
+                    pcall(function()
+                        local tweenservice = game:GetService("TweenService")
+                        local playerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+                        local hotbar
+                        local hotbar1
+                        local hotbarHealthbarContainer
+                        local healthbarProgressWrapper
+                        local healthbar
+                        local speed = 1
+                        local redStart = 109
+                        local greenStart = 175
+                        local blueStart = 255
+                        local redEnd = 211
+                        local greenEnd = 110
+                        local blueEnd = 255
+
+                        repeat
+                            if not healthbar or not healthbar.Parent then
+                                hotbar = playerGui:WaitForChild("hotbar")
+                                hotbar1 = hotbar:WaitForChild("1")
+                                hotbarHealthbarContainer = hotbar1:WaitForChild("HotbarHealthbarContainer")
+                                healthbarProgressWrapper = hotbarHealthbarContainer:WaitForChild("HealthbarProgressWrapper")
+                                healthbar = healthbarProgressWrapper:WaitForChild("1")
+                            end
+                            
+                            local t = math.abs(math.sin(tick()))
+                            local red = redStart + (redEnd - redStart) * t
+                            local green = greenStart + (greenEnd - greenStart) * t
+                            local blue = blueStart + (blueEnd - blueStart) * t
+                            local color = Color3.new(red/255, green/255, blue/255)
+                            
+                            local tween = tweenservice:Create(healthbar, TweenInfo.new(speed), {BackgroundColor3 = color})
+                            tween:Play()
+                            wait(speed)
+                        until not CustomModule.Enabled
+                    end) 
+                end)
+            end
+        end,
+	  HoverText = "Made By Daddi Snoopy"
+    })
+end)
+
+runFunction(function()
 	Glizzy = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
 		Name = "Glizzy",
 		Function = function(callback)
@@ -11301,44 +11350,7 @@ runFunction(function()
         end,
         ["HoverText"] = "Tp To Closest Bed | Works in 30v30 😱"
     })
-end)
-	
-runFunction(function()
-    CustomModule = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
-        Name = "RainbowHealthBar",
-        Function = function(callback)
-            if callback then 
-                spawn(function()
-                    pcall(function()
-                        local tweenservice = game:GetService("TweenService")
-                        local playerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
-                        local hotbar
-                        local hotbar1
-                        local hotbarHealthbarContainer
-                        local healthbarProgressWrapper
-                        local healthbar
-                        local speed = 5
-                        local hue = 0
-                        repeat
-                            if not healthbar or not healthbar.Parent then
-                                hotbar = playerGui:WaitForChild("hotbar")
-                                hotbar1 = hotbar:WaitForChild("1")
-                                hotbarHealthbarContainer = hotbar1:WaitForChild("HotbarHealthbarContainer")
-                                healthbarProgressWrapper = hotbarHealthbarContainer:WaitForChild("HealthbarProgressWrapper")
-                                healthbar = healthbarProgressWrapper:WaitForChild("1")
-                            end
-                            hue = (hue + speed/360) % 1
-                            local color = Color3.fromHSV(hue, 1, 1)
-                            local tween = tweenservice:Create(healthbar, TweenInfo.new(speed/360), {BackgroundColor3 = color})
-                            tween:Play()
-                            wait(speed/360)
-                        until not CustomModule.Enabled
-                    end)
-                end)
-            end
-        end
-    })
-end)
+end)	
 runFunction(function()
     local connection
     local jumpConnection
