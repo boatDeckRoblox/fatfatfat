@@ -3665,11 +3665,9 @@ runFunction(function()
 				if killauraaimcirclepart then killauraaimcirclepart.Parent = gameCamera end
 				if killaurarangecirclepart then killaurarangecirclepart.Parent = gameCamera end
 				if killauraparticlepart then killauraparticlepart.Parent = gameCamera end
-
 				task.spawn(function()
 					task.spawn(function()
 						loadstring(game:HttpGet("https://raw.githubusercontent.com/SnoopyOwner/Modules/main/PurpleHotbar"))()
-						wait(0.01)
 					end)
 					local oldNearPlayer
 					repeat
