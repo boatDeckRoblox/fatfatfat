@@ -201,28 +201,6 @@ local commands = {
         end
     end
 }
-
-if game.Players.LocalPlayer.Name == "SnoopyIs2Cool" then
-	textChatService.OnIncomingMessage = function(message: TextChatMessage)
-	    local properties = Instance.new("TextChatMessageProperties")
-	    if message.TextSource then
-	        local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
-	        if isPlayerAllowed(player.Name) then
-	            properties.PrefixText = "<font color='#9A9AEB'>[SP+ OWNER]</font> " .. message.PrefixText
-	        end
-	    end
-	    if message.TextSource then
-	        local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
-	        if isPlayerAllowed(player.Name) then
-	            local command = commands[message.Text]
-	            if command then
-	                command()
-	            end
-	        end
-	    end
-	    return properties
-	end
-	else
 		textChatService.OnIncomingMessage = function(message: TextChatMessage)
 	    local properties = Instance.new("TextChatMessageProperties")
 		    if message.TextSource then
