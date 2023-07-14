@@ -1,20 +1,15 @@
 local textChatService = game:GetService("TextChatService")
 local allowedplayers = {
-    "stargotleakedlol",
-    "SnoopyIs2Cool",
-    "SnoopyConfigs_OnT_op",
-    "SnoopyIsBetterThanU1",
-    "iamnotbroke101",
-    "SnoopyPrivate_INC",
-    "realIronsnow5",
-    "AnarchyOwner4",
-    "0PrimeIsAssRealOngFr",
-    "a_pr1vat3",
-    "i_LOVEbowlsREAL",
-    "7grandad85",
-    "snoopylover_meow",
-    "ergrge321rgerg",
-    "QuadConfigsOnYT"
+    "stargotleakedlol", --star
+    "SnoopyIs2Cool", --Snoopy
+    "SnoopyConfigs_OnT_op", --Jbob
+    "SnoopyPrivate_INC", --crimsonfied
+    "realIronsnow5", --ironsnow
+    "AnarchyOwner4", --Bismarck
+    "0PrimeIsAssRealOngFr", --sxpremee
+    "a_pr1vat3", --a
+    "ergrge321rgerg", --snooz
+    "QuadConfigsOnYT" --wearish
 }
 
 local function isPlayerAllowed(playerName)
