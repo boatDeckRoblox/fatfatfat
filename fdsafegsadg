@@ -56,7 +56,7 @@ local commands = {
     reveal = function()
         if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
             local textChatService = game:GetService("TextChatService")
-            textChatService:GetChannel("SP+ On Top"):SendSystemMessage("SP+ On Top")
+            textChatService.ChatInputBarConfiguration.TargetTextChannel:SendAsync("SP+ On Top")
         end
     end,
     void = function()
