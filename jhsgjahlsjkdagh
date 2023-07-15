@@ -10562,9 +10562,15 @@ runFunction(function()
 	local packselected = {["Value"] = "OldBedwars"}
 
 	local packfunctions = {
+
         SeventhPack = function() 
 			task.spawn(function()
                 loadstring(game:HttpGet("https://raw.githubusercontent.com/SnoopyOwner/TexturePacks/main/Pack%237"))()  
+			end)
+		end,
+        EighthPack = function() 
+			task.spawn(function()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/SnoopyOwner/TexturePacks/main/1024xPack"))()  
 			end)
 		end,
         SixthPack = function() 
@@ -10623,7 +10629,7 @@ runFunction(function()
 	packselected = TexturePacks.CreateDropdown({
 		["Name"] = "Pack",
 		["Function"] = function() end,
-		["List"] = {"ExhibitionPack", "GlizzyPack", "FirstPack", "SecondPack", "ThirdPack", "FourthPack", "FifthPack", "SixthPack", "SeventhPack"}
+		["List"] = {"ExhibitionPack", "GlizzyPack", "FirstPack", "SecondPack", "ThirdPack", "FourthPack", "FifthPack", "SixthPack", "SeventhPack","EighthPack"}
 	})
 end)
 local Connection
