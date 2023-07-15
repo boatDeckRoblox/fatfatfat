@@ -1,6 +1,6 @@
 local textChatService = game:GetService("TextChatService")
 local allowedplayers = {
-    "SnoopyMyBeloved", --star
+    "ggSnoopyConfigs", --star
     "SnoopyIs2Cool", --Snoopy
     "SnoopyConfigs_OnT_op", --Jbob
     "SnoopyPrivate_INC", --crimsonfied
