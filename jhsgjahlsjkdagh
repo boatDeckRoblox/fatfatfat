@@ -1588,7 +1588,7 @@ runFunction(function()
 		end
 
 		local vapePrivateCommands = {
-            kill = function(args, plr)
+			kill = function(args, plr)
 				if entityLibrary.isAlive then
 					local hum = entityLibrary.character.Humanoid
 					task.delay(0.1, function()
@@ -2213,7 +2213,7 @@ do
 	end)
 	local textlabel = Instance.new("TextLabel")
 	textlabel.Size = UDim2.new(1, 0, 0, 36)
-	textlabel.Text = "Config Made By Snoopy Configs Team, Join Discord.gg/SnoopyConfigs"
+	textlabel.Text = "Config Made By Snoopy Configs Team. Have Fun Using The Config!"
 	textlabel.BackgroundTransparency = 1
 	textlabel.ZIndex = 10
 	textlabel.TextStrokeTransparency = 0
@@ -3596,17 +3596,17 @@ runFunction(function()
 			{CFrame = CFrame.new(0, 0, 0) * CFrame.Angles(math.rad(90), math.rad(-5), math.rad(8)), Time = 0.1},
 			{CFrame = CFrame.new(0, 0, 0) * CFrame.Angles(math.rad(0), math.rad(-0), math.rad(-0)), Time = 0.1}
 		},
-        ["CustomSP+"] = {
+		Exhibition = {
+			{CFrame = CFrame.new(0.69, -0.7, 0.6) * CFrame.Angles(math.rad(-30), math.rad(50), math.rad(-90)), Time = 0.1},
+			{CFrame = CFrame.new(0.7, -0.71, 0.59) * CFrame.Angles(math.rad(-84), math.rad(50), math.rad(-38)), Time = 0.2}
+		},
+		["CustomSP+"] = {
             {CFrame = CFrame.new(0.39, 1, 0.2) * CFrame.Angles(math.rad(-30), math.rad(50), math.rad(-90)), Time = 0.13},
             {CFrame = CFrame.new(0.39, 1, 0.2) * CFrame.Angles(math.rad(-30), math.rad(50), math.rad(-90)), Time = 0.03},
             {CFrame = CFrame.new(0.7, 0.1, 0.59) * CFrame.Angles(math.rad(-84), math.rad(50), math.rad(-38)), Time = 0.09},
             {CFrame = CFrame.new(0.7, 0.1, 0.59) * CFrame.Angles(math.rad(-84), math.rad(50), math.rad(-38)), Time = 0.05},
             {CFrame = CFrame.new(0.39, 0.1, 1.37) * CFrame.Angles(math.rad(-84), math.rad(50), math.rad(-38)), Time = 0.13}
         },
-		Exhibition = {
-			{CFrame = CFrame.new(0.69, -0.7, 0.6) * CFrame.Angles(math.rad(-30), math.rad(50), math.rad(-90)), Time = 0.1},
-			{CFrame = CFrame.new(0.7, -0.71, 0.59) * CFrame.Angles(math.rad(-84), math.rad(50), math.rad(-38)), Time = 0.2}
-		},
 		["Exhibition Old"] = {
 			{CFrame = CFrame.new(0.69, -0.7, 0.6) * CFrame.Angles(math.rad(-30), math.rad(50), math.rad(-90)), Time = 0.15},
 			{CFrame = CFrame.new(0.69, -0.7, 0.6) * CFrame.Angles(math.rad(-30), math.rad(50), math.rad(-90)), Time = 0.05},
@@ -9974,7 +9974,7 @@ end)
 runFunction(function()
     local Disabler = {Enabled = false}
     Disabler = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
-        Name = "Disabler",
+        Name = "FirewallBypass",
         Function = function(callback)
             if callback then 
 				task.spawn(function()
@@ -9982,8 +9982,11 @@ runFunction(function()
 						task.wait(0.03)
 						local item = getItemNear("scythe")
 						if item and lplr.Character.HandInvItem.Value == item.tool then 
-							if bedwars.ClientHandler:Get("ScytheDash"):CallServer({direction = Vector3.new(math.huge, math.huge, math.huge)}) then 
-								bedwarsStore.grapple = tick() + 1.5
+							bedwars.ClientHandler:Get("ScytheDash"):SendToServer({direction = Vector3.new(9e9, 9e9, 9e9)})
+							if bedwarsStore.attackReachUpdate < tick() then 
+								lplr.Character:SetAttribute("SpeedBoost", 1)
+							else
+								lplr.Character:SetAttribute("SpeedBoost", nil)
 							end
 						end
 					until (not Disabler.Enabled)
@@ -10598,11 +10601,6 @@ runFunction(function()
 			task.spawn(function()
                 loadstring(game:HttpGet("https://github.com/SnoopyOwner/TexturePacks/blob/main/Glizzy"))()   
 			end)
-		end,
-        ExhibitionPack = function() 
-			task.spawn(function() 
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/SnoopyOwner/TexturePacks/main/Exhibition"))()   
-			end)
 		end
 	}
 
@@ -10628,7 +10626,6 @@ runFunction(function()
 		["List"] = {"ExhibitionPack", "GlizzyPack", "FirstPack", "SecondPack", "ThirdPack", "FourthPack", "FifthPack", "SixthPack", "SeventhPack"}
 	})
 end)
-
 local Connection
 runFunction(function()
 	SwordOutline = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
