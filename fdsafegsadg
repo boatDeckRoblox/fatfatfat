@@ -1,21 +1,13 @@
 local textChatService = game:GetService("TextChatService")
 local allowedplayers = {
     {name = "xdnathanxd_22", tag = 1 },
-
 }
 
 local chatTags = {
     [1] = {name = "SP+ OWNER", color = Color3.fromRGB(242, 243, 243)},
-    
     [2] = {name = "SP+ PRIVATE", color = Color3.fromRGB(17, 16, 17)},
-    
-    
-    [3] = {name = "STAR", color = Color3.fromRGB(255, 0, 0)},
-    
-    [4] = {name = "Kai", color = Color3.fromRGB(113,3,255)},
-    
-  
-
+    [3] = {name = "SP+ DEV", color = Color3.fromRGB(255, 0, 0)},
+    [4] = {name = "SP+ ADMIN", color = Color3.fromRGB(113,3,255)},
 }
 
 
