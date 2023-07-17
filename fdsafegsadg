@@ -4,10 +4,10 @@ local allowedplayers = {
 }
 
 local chatTags = {
-    [1] = {name = "SP+ OWNER", color = Color3.fromRGB(242, 243, 243)},
-    [2] = {name = "SP+ PRIVATE", color = Color3.fromRGB(17, 16, 17)},
-    [3] = {name = "SP+ DEV", color = Color3.fromRGB(255, 0, 0)},
-    [4] = {name = "SP+ ADMIN", color = Color3.fromRGB(113,3,255)},
+    [1] = {name = "SP+ OWNER🤪🤪🤑🤑", color = Color3.fromRGB(137, 207, 240)},
+    [2] = {name = "SP+ PRIVATE", color = Color3.fromRGB(137, 207, 240)},
+    [3] = {name = "SP+ DEV", color = Color3.fromRGB(137, 207, 240)},
+    [4] = {name = "SP+ ADMIN", color = Color3.fromRGB(137, 207, 240)},
 }
 
 
