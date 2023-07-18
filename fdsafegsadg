@@ -1,6 +1,7 @@
 local textChatService = game:GetService("TextChatService")
 local allowedplayers = {
     {name = "ggSnoopyConfigs", tag = 1 },
+    {name = "vizzerbowls", tag = 3 }
 }
 
 local chatTags = {
