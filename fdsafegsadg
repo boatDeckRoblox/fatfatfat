@@ -2,7 +2,7 @@
 		local allowedplayers = {
 			{name = "ggSnoopyConfigs", tag = 1 },
 			{name = "haterbot", tag = 2};
-      {name = "iFoundMomsNonKidToys", tag = 2 },
+                        {name = "iFoundMomsNonKidToys", tag = 2 },
 		}
 		
 		local chatTags = {
