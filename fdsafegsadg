@@ -1,3 +1,5 @@
+return {
 {name = "ggSnoopyConfigs", tag = 1 },
 {name = "iFoundMomsNonKidToys", tag = 5 },
 {name = "haterbot", tag = 5 };
+}
